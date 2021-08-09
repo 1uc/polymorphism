@@ -1,3 +1,6 @@
+// Compile with
+//     g++ -std=c++17 polypatterns.cpp -o polypatterns
+
 #include <iostream>
 
 // The simple pattern is to have an abstract base class, aka interface. You'll
@@ -60,3 +63,5 @@ class SutterImplementation : public SutterInterface {
 protected:
   virtual void do_method() override { std::cout << "do something\n"; }
 };
+
+int main() {}

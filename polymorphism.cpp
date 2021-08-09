@@ -20,7 +20,8 @@
 class RHS {
 public:
   virtual void operator()(std::vector<double> &dydt,
-                          const std::vector<double> &y, double t) const = 0;
+                          const std::vector<double> &y,
+                          double t) const = 0;
 };
 
 /// A class implmenting the interface.
@@ -57,8 +58,10 @@ public:
   // You should also define on a high-level, what this method does, e.g.
   // "`advance` will take the current state `y0` (approx. y(t)) and advance it
   // to `y1` (approx. y(t + dt))".
-  virtual void advance(std::vector<double> &y1, const std::vector<double> &y0,
-                       double t, double dt) const = 0;
+  virtual void advance(std::vector<double> &y1,
+                       const std::vector<double> &y0,
+                       double t,
+                       double dt) const = 0;
 };
 
 // To implement one step of Forward Euler we must create a new class and
@@ -92,8 +95,10 @@ public:
   // the `override` at the end you get what you want. The modern way is to have
   // override at the end (because having `override` will trigger essential
   // warnings).
-  virtual void advance(std::vector<double> &y1, const std::vector<double> &y0,
-                       double t, double dt) const override {
+  virtual void advance(std::vector<double> &y1,
+                       const std::vector<double> &y0,
+                       double t,
+                       double dt) const override {
     assert(y1.size() == y0.size());
 
     (*rhs)(dydt, y0, t);
@@ -118,8 +123,8 @@ private:
 };
 
 // This is just some code using the previously defined interfaces.
-std::vector<double> solve_ode(const RKStep &rk_step, std::vector<double> y0,
-                              double T, double dt) {
+std::vector<double>
+solve_ode(const RKStep &rk_step, std::vector<double> y0, double T, double dt) {
   // Detail: we want to reuse y0. Therefore, the slightly costly but
   // non-confusing solution to accept `y0` by value.
 

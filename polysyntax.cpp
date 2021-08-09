@@ -1,5 +1,5 @@
 // Compile with
-//     g++ polysyntax.cpp -o polysyntax
+//     g++ -std=c++17 polysyntax.cpp -o polysyntax
 
 // clang-format off
 #include <iostream>
